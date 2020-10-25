@@ -39,66 +39,66 @@ public class Tokenizer {
     }
 
     private Token lexUInt() throws TokenizeError {
-        // 请填空：
-        // 直到查看下一个字符不是数字为止:
-        String stringInt = "";
-        Pos startPos = it.currentPos();
-        char current = it.nextChar();
-        boolean check = false;
-        while(Character.isDigit(current)) {
-            // -- 前进一个字符，并存储这个字符
-            stringInt += current;
-            current = it.nextChar();
-            check = true;
-        }
-        //
-        // 解析存储的字符串为无符号整数
-        // 解析成功则返回无符号整数类型的token，否则返回编译错误
-        if (check) {
-            return new Token(TokenType.Uint, Integer.parseInt(stringInt), startPos, it.currentPos());
-        }
-        // Token 的 Value 应填写数字的值
-        throw new Error("Not implemented");
+//         // 请填空：
+//         // 直到查看下一个字符不是数字为止:
+//         String stringInt = "";
+//         Pos startPos = it.currentPos();
+//         char current = it.nextChar();
+//         boolean check = false;
+//         while(Character.isDigit(current)) {
+//             // -- 前进一个字符，并存储这个字符
+//             stringInt += current;
+//             current = it.nextChar();
+//             check = true;
+//         }
+//         //
+//         // 解析存储的字符串为无符号整数
+//         // 解析成功则返回无符号整数类型的token，否则返回编译错误
+//         if (check) {
+//             return new Token(TokenType.Uint, Integer.parseInt(stringInt), startPos, it.currentPos());
+//         }
+//         // Token 的 Value 应填写数字的值
+//         throw new Error("Not implemented");
     }
 
     private Token lexIdentOrKeyword() throws TokenizeError {
-        // 请填空：
-        // 直到查看下一个字符不是数字或字母为止:
-        String stringIOK = "";
-        Pos startPos = it.currentPos();
-        char current = it.nextChar();
-        boolean check = false;
-        while(Character.isDigit(current) || Character.isAlphabetic(current)) {
-            // -- 前进一个字符，并存储这个字符
-            stringIOK += current;
-            current = it.nextChar();
-            check = true;
-        }
-        //
-        // 尝试将存储的字符串解释为关键字
-        if (check) {
-            switch (stringIOK) {
-                case "Begin":
-                    return new Token(TokenType.Begin, stringIOK, startPos, it.currentPos());
-                case "End":
-                    return new Token(TokenType.End, stringIOK, startPos, it.currentPos());
-                case "Var":
-                    return new Token(TokenType.Var, stringIOK, startPos, it.currentPos());
-                case "Print":
-                    return new Token(TokenType.Print, stringIOK, startPos, it.currentPos());
-                case "Const":
-                    return new Token(TokenType.Const, stringIOK, startPos, it.currentPos());
-                case "EOF":
-                    return new Token(TokenType.EOF, stringIOK, startPos, it.currentPos());
-                default:
-                    return new Token(TokenType.Ident, stringIOK, startPos, it.currentPos());
-            }
-        }
-        // -- 如果是关键字，则返回关键字类型的 token
-        // -- 否则，返回标识符
-        //
-        // Token 的 Value 应填写标识符或关键字的字符串
-        throw new Error("Not implemented");
+//         // 请填空：
+//         // 直到查看下一个字符不是数字或字母为止:
+//         String stringIOK = "";
+//         Pos startPos = it.currentPos();
+//         char current = it.nextChar();
+//         boolean check = false;
+//         while(Character.isDigit(current) || Character.isAlphabetic(current)) {
+//             // -- 前进一个字符，并存储这个字符
+//             stringIOK += current;
+//             current = it.nextChar();
+//             check = true;
+//         }
+//         //
+//         // 尝试将存储的字符串解释为关键字
+//         if (check) {
+//             switch (stringIOK) {
+//                 case "Begin":
+//                     return new Token(TokenType.Begin, stringIOK, startPos, it.currentPos());
+//                 case "End":
+//                     return new Token(TokenType.End, stringIOK, startPos, it.currentPos());
+//                 case "Var":
+//                     return new Token(TokenType.Var, stringIOK, startPos, it.currentPos());
+//                 case "Print":
+//                     return new Token(TokenType.Print, stringIOK, startPos, it.currentPos());
+//                 case "Const":
+//                     return new Token(TokenType.Const, stringIOK, startPos, it.currentPos());
+//                 case "EOF":
+//                     return new Token(TokenType.EOF, stringIOK, startPos, it.currentPos());
+//                 default:
+//                     return new Token(TokenType.Ident, stringIOK, startPos, it.currentPos());
+//             }
+//         }
+//         // -- 如果是关键字，则返回关键字类型的 token
+//         // -- 否则，返回标识符
+//         //
+//         // Token 的 Value 应填写标识符或关键字的字符串
+//         throw new Error("Not implemented");
     }
 
     private Token lexOperatorOrUnknown() throws TokenizeError {
