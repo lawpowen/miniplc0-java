@@ -102,11 +102,12 @@ public class Tokenizer {
     }
 
     private Token lexOperatorOrUnknown() throws TokenizeError {
-        case '+':
+        switch (it.nextChar()) {
+            case '+':
                 return new Token(TokenType.Plus, '+', it.previousPos(), it.currentPos());
 
             case '-':
-                return new Token(TokenType.Minus, '-', it.previousPos(), it.currentPos());
+		        return new Token(TokenType.Minus, '-', it.previousPos(), it.currentPos());
 
             case '*':
                 return new Token(TokenType.Mult, '*', it.previousPos(), it.currentPos());
@@ -114,16 +115,16 @@ public class Tokenizer {
             case '/':
                 return new Token(TokenType.Div, '/', it.previousPos(), it.currentPos());
 
-            case '=':
+	        case '=':
                 return new Token(TokenType.Equal, '=', it.previousPos(), it.currentPos());
 
-            case '(':
+	        case '(':
                 return new Token(TokenType.LParen, '(', it.previousPos(), it.currentPos());
 
-            case ')':
+	        case ')':
                 return new Token(TokenType.RParen, ')', it.previousPos(), it.currentPos());
 
-            case ';':
+	        case ';':
                 return new Token(TokenType.Semicolon, ';', it.previousPos(), it.currentPos());
 
             default:
