@@ -79,9 +79,9 @@ public class Tokenizer {
         // 尝试将存储的字符串解释为关键字
         if (check) {
             switch (stringIOK) {
-                case "Begin":
+                case "begin":
                     return new Token(TokenType.Begin, stringIOK, startPos, it.currentPos());
-                case "End":
+                case "end":
                     return new Token(TokenType.End, stringIOK, startPos, it.currentPos());
                 case "Var":
                     return new Token(TokenType.Var, stringIOK, startPos, it.currentPos());
