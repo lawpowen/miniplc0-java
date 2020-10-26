@@ -262,8 +262,8 @@ public final class Analyser {
             expect(TokenType.Semicolon);
 
             // 加入符号表，请填写名字和当前位置（报错用）
-            String name = /* 名字 */ null;
-            addSymbol(name, false, false, /* 当前位置 */ null);
+            String name = /* 名字 */ nameToken.getTokenType().toString();
+            addSymbol(name, false, false, /* 当前位置 */ nameToken.getStartPos());
 
             // 如果没有初始化的话在栈里推入一个初始值
             if (!initialized) {
@@ -327,7 +327,7 @@ public final class Analyser {
             }
 
             // 运算符
-            next();
+            op = next();
 
             // 项
             analyseItem();
@@ -345,9 +345,12 @@ public final class Analyser {
         // 赋值语句 -> 标识符 '=' 表达式 ';'
 
         // 分析这个语句
-
+        var nameToken = expect(TokenType.Ident);
+        expect(TokenType.Equal);
+        analyseExpression();
+        expect(TokenType.Semicolon);
         // 标识符是什么？
-        String name = null;
+        String name = nameToken.getTokenType().toString();
         var symbol = symbolTable.get(name);
         if (symbol == null) {
             // 没有这个标识符
@@ -385,10 +388,12 @@ public final class Analyser {
         analyseFactor();
         while (true) {
             // 预读可能是运算符的 token
-            Token op = null;
-
+            var op = peek();
+            if (op.getTokenType() != TokenType.Mult && op.getTokenType() != TokenType.Div) {
+                break;
+            }
             // 运算符
-            op = peek();
+            op = next();
             // 因子
             analyseFactor();
             // 生成代码
@@ -417,7 +422,7 @@ public final class Analyser {
             // 是标识符
 
             // 加载标识符的值
-            String name = /* 快填 */ null;
+            String name = /* 快填 */(String) next().getValue();
             var symbol = symbolTable.get(name);
             if (symbol == null) {
                 // 没有这个标识符
@@ -436,6 +441,7 @@ public final class Analyser {
         } else if (check(TokenType.LParen)) {
             // 是表达式
             // 调用相应的处理函数
+            analyseExpression();
         } else {
             // 都不是，摸了
             throw new ExpectedTokenError(List.of(TokenType.Ident, TokenType.Uint, TokenType.LParen), next());
