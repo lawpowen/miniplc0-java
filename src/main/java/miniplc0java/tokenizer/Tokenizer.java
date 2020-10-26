@@ -79,15 +79,15 @@ public class Tokenizer {
         // 尝试将存储的字符串解释为关键字
         if (check) {
             switch (stringIOK) {
-                case "Begin":
+                case "begin":
                     return new Token(TokenType.Begin, stringIOK, startPos, it.currentPos());
-                case "End":
+                case "end":
                     return new Token(TokenType.End, stringIOK, startPos, it.currentPos());
-                case "Var":
+                case "var":
                     return new Token(TokenType.Var, stringIOK, startPos, it.currentPos());
-                case "Print":
+                case "print":
                     return new Token(TokenType.Print, stringIOK, startPos, it.currentPos());
-                case "Const":
+                case "const":
                     return new Token(TokenType.Const, stringIOK, startPos, it.currentPos());
                 case "EOF":
                     return new Token(TokenType.EOF, stringIOK, startPos, it.currentPos());
